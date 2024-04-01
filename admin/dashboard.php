@@ -1,5 +1,5 @@
 <?php
-require('include/essential.php');
+require ('include/essential.php');
 adminLogin();
 session_regenerate_id(true);
 ?>
@@ -12,12 +12,12 @@ session_regenerate_id(true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin PANEL - DASHBOARD </title>
-    <?php require('include/links.php'); ?>
+    <?php require ('include/links.php'); ?>
 </head>
 
 <body class="bg-light">
 
-    <?php require('include/header.php'); ?>
+    <?php require ('include/header.php'); ?>
 
     <!-- main content -->
     <div class="container-fluid" id="main-content">
@@ -180,7 +180,7 @@ session_regenerate_id(true);
 
     </div>
 
-    <?php require('include/scripts.php'); ?>
+    <?php require ('include/scripts.php'); ?>
 </body>
 
 </html>
