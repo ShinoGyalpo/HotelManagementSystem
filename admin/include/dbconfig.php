@@ -7,7 +7,7 @@ $db = 'fyphms';
 $con = mysqli_connect('localhost', 'root', 'password', 'fyphms', '3307');
 
 if (!$con) {
-    die ("Cannot Connect to Database" . mysqli_connect_error());
+    die("Cannot Connect to Database" . mysqli_connect_error());
 }
 
 
@@ -34,11 +34,11 @@ function select($sql, $values, $datatypes)
             mysqli_stmt_close($stmt);
             return $res;
         } else {
-            die ("Query cannot be executed- Select");
+            die("Query cannot be executed- Select");
         }
 
     } else {
-        die ("Query cannot be prepared- Select");
+        die("Query cannot be prepared- Select");
     }
 }
 
@@ -52,11 +52,11 @@ function update($sql, $values, $datatypes)
             mysqli_stmt_close($stmt);
             return $res;
         } else {
-            die ("Query cannot be executed- update");
+            die("Query cannot be executed- update");
         }
 
     } else {
-        die ("Query cannot be prepared- update");
+        die("Query cannot be prepared- update");
     }
 }
 
