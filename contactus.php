@@ -7,12 +7,12 @@
     <title>Hotel PG - Contact</title>
 
 
-    <?php require('include/links.php');?>
+    <?php require ('include/links.php'); ?>
 
 </head>
 
 <body class="bg-light">
-    <?php require('include/header.php');?>
+    <?php require ('include/header.php'); ?>
 
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">CONTACT US</h2>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <?php require('include/footer.php');?>
+    <?php require ('include/footer.php'); ?>
 
 
 
