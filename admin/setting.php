@@ -83,7 +83,7 @@ session_regenerate_id(true);
 
 
                 <!-- Shutdown Section -->
-                <div class="card border-1 shadow-sm">
+                <div class="card border-1 shadow-sm mb-4">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h5 class="card-title">ShutDown Website</h5>
@@ -179,135 +179,297 @@ session_regenerate_id(true);
                     </div>
                 </div>
 
+                <!-- Modal for Contact details-->
+                <div class="modal fade" id="contacts-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <form id="contacts_s_form">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Contacts Settings</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="container-fluid p-0">
+                                        <div class="row">
+                                            <!-- left hand side of contact modal -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Address</label>
+                                                    <input type="text" name="address" id="address_inp"
+                                                        class="form-control shadow-none" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Google Map Link</label>
+                                                    <input type="text" name="gmap" id="gmap_inp"
+                                                        class="form-control shadow-none" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Phone Numbers (With Country
+                                                        Code)</label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"> <i
+                                                                class="bi bi-telephone-fill"></i></span>
+                                                        <input type="text" name="pn1" id="pn1_inp"
+                                                            class="form-control shadow-none" required>
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"> <i
+                                                                class="bi bi-telephone-fill"></i></span>
+                                                        <input type="text" name="pn2" id="pn2_inp"
+                                                            class="form-control shadow-none">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Email</label>
+                                                    <input type="email" name="email" id="email_inp"
+                                                        class="form-control shadow-none" required>
+                                                </div>
+                                            </div>
+
+                                            <!-- Right hand side of contact modal -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Social Links</label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">
+                                                            <i class=" bi bi-facebook"></i></span>
+                                                        <input type="text" name="fb" id="fb_inp"
+                                                            class="form-control shadow-none" required>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">
+                                                            <i class=" bi bi-instagram"></i></span>
+                                                        <input type="text" name="insta" id="insta_inp"
+                                                            class="form-control shadow-none" required>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">
+                                                            <i class=" bi bi-twitter-x"></i></span>
+                                                        <input type="text" name="tw" id="tw_inp"
+                                                            class="form-control shadow-none">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">iFrame Src</label>
+                                                    <input type="text" name="iframe" id="iframe_inp"
+                                                        class="form-control shadow-none" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" onclick="contacts_inp(contacts_data)"
+                                        class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                                    <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
 
             </div>
         </div>
-
     </div>
     <?php require ('include/scripts.php'); ?>
 
     <script>
-    let general_data, contacts_data;
-    let general_s_form = document.getElementById('general_s_form');
-    let site_title_inp = document.getElementById('site_title_inp');
-    let site_about_inp = document.getElementById('site_about_inp');
+        let general_data, contacts_data;
+        let general_s_form = document.getElementById('general_s_form');
+        let site_title_inp = document.getElementById('site_title_inp');
+        let site_about_inp = document.getElementById('site_about_inp');
+
+        let contacts_s_form = document.getElementById('contacts_s_form');
 
 
-    //general function
-    function get_general() {
-        let site_title = document.getElementById('site_title');
-        let site_about = document.getElementById('site_about');
+        //general function
+        function get_general() {
+            let site_title = document.getElementById('site_title');
+            let site_about = document.getElementById('site_about');
 
 
 
-        let shutdown_toggle = document.getElementById('shutdown-toggle');
+            let shutdown_toggle = document.getElementById('shutdown-toggle');
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        xhr.onload = function() {
-            general_data = JSON.parse(this.responseText);
-            site_title.innerText = general_data.site_title;
-            site_about.innerText = general_data.site_about;
+            xhr.onload = function () {
+                general_data = JSON.parse(this.responseText);
+                site_title.innerText = general_data.site_title;
+                site_about.innerText = general_data.site_about;
 
-            site_title_inp.value = general_data.site_title;
-            site_about_inp.value = general_data.site_about;
+                site_title_inp.value = general_data.site_title;
+                site_about_inp.value = general_data.site_about;
 
-            if (general_data.shutdown == 0) {
-                shutdown_toggle.checked = false;
-                shutdown_toggle.value = 0;
+                if (general_data.shutdown == 0) {
+                    shutdown_toggle.checked = false;
+                    shutdown_toggle.value = 0;
 
-            } else {
-                shutdown_toggle.checked = true;
-                shutdown_toggle.value = 1;
+                } else {
+                    shutdown_toggle.checked = true;
+                    shutdown_toggle.value = 1;
+                }
+
             }
 
+            xhr.send('get_general');
         }
 
-        xhr.send('get_general');
-    }
+        general_s_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            upd_general(site_title_inp.value, site_about_inp.value);
 
-    general_s_form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        upd_general(site_title_inp.value, site_about_inp.value);
-
-    });
+        });
 
 
-    // General function update
-    function upd_general(site_title_val, site_about_val) {
+        // General function update
+        function upd_general(site_title_val, site_about_val) {
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        xhr.onload = function() {
-            var myModal = document.getElementById('general-s');
-            var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap scrollspy instance
-            modal.hide();
+            xhr.onload = function () {
+                var myModal = document.getElementById('general-s');
+                var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap scrollspy instance
+                modal.hide();
 
-            if (this.responseText == 1) {
-                alert('success', 'Changes saved!!!');
+                if (this.responseText == 1) {
+                    alert('success', 'Changes saved!!!');
+                    get_general();
+
+                } else {
+                    alert('error', 'No changes made');
+                }
+
+
+            }
+
+            xhr.send('site_title=' + encodeURIComponent(site_title_val) + '&site_about=' + encodeURIComponent(
+                site_about_val) + '&upd_general');
+        }
+
+
+        //Shutdown function
+        function upd_shutdown(val) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                if (this.responseText == 1 && general_data.shutdown == 0) {
+                    alert('success', 'Site has been shutdown!!!');
+                } else {
+                    alert('success', 'Shutdown mode off!!!');
+                }
                 get_general();
 
-            } else {
-                alert('error', 'No changes made');
+
+            }
+            xhr.send('upd_shutdown=' + val);
+        }
+
+
+        //Contact data
+        function get_contacts() {
+
+            let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw'];
+            let iframe = document.getElementById('iframe');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                contacts_data = JSON.parse(this.responseText);
+                contacts_data = Object.values(contacts_data);
+
+                //console.log(contacts_data);
+                for (i = 0; i < contacts_p_id.length; i++) {
+                    document.getElementById(contacts_p_id[i]).innerText = contacts_data[i + 1];
+                }
+                iframe.src = contacts_data[9];
+                contacts_inp(contacts_data);
+
+
+            }
+
+            xhr.send('get_contacts');
+        }
+
+        //Contact input function
+        function contacts_inp(data) {
+            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp',
+                'insta_inp',
+                'tw_inp', 'iframe_inp'
+            ];
+            for (i = 0; i < contacts_inp_id.length; i++) {
+                document.getElementById(contacts_inp_id[i]).value = data[i + 1];
             }
 
 
         }
 
-        xhr.send('site_title=' + encodeURIComponent(site_title_val) + '&site_about=' + encodeURIComponent(
-            site_about_val) + '&upd_general');
-    }
+        contacts_s_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            upd_contacts();
+        });
 
 
-    //Shutdown function
-    function upd_shutdown(val) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        xhr.onload = function() {
-            if (this.responseText == 1 && general_data.shutdown == 0) {
-                alert('success', 'Site has been shutdown!!!');
-                get_general();
+        function upd_contacts() {
+            let index = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw', 'iframe'];
+            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp',
+                'insta_inp',
+                'tw_inp', 'iframe_inp'
+            ];
 
-            } else {
-                alert('success', 'Shutdown mode off!!!');
+            let data_str = "";
+            for (i = 0; i < index.length; i++) {
+                data_str += index[i] + "=" + document.getElementById(contacts_inp_id[i]).value + '&';
+            }
+            data_str += "upd_contacts";
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                var myModal = document.getElementById('contacts-s');
+                var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap scrollspy instance
+                modal.hide();
+                if (this.responseText == 1) {
+                    alert('success', 'Changes saved!!!');
+                    get_contacts();
+
+                } else {
+                    alert('error', 'No chanegs made!!!');
+                }
+
             }
 
-
-        }
-        xhr.send('upd_shutdown=' + val);
-    }
-
-    //Contact data
-
-
-    function get_contacts() {
-
-        let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw'];
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/settings_crud.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function() {
-            //general_data = JSON.parse(this.responseText);
+            xhr.send(data_str);
 
         }
 
-        xhr.send('get_general');
-    }
+        window.onload = function () {
+            get_general();
+            get_contacts();
 
-
-
-    window.onload = function() {
-        get_general();
-    }
+        }
     </script>
 
 </body>
-<html>
+
+</html>
