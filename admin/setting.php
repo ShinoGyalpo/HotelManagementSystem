@@ -24,8 +24,8 @@ session_regenerate_id(true);
             <div class="col-lg-10 ms-auto p-4 overflow-hidden">
                 <h4 class="mb-4">SETTINGS</h4>
 
-                <!-- General Settings Action-->
-                <div class="card border-1 shadow-sm mb-4">
+                <!-- General Settings Section-->
+                <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h5 class="card-title">General Settings</h5>
@@ -275,7 +275,58 @@ session_regenerate_id(true);
                     </div>
                 </div>
 
+                <!-- Management Team  Section-->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="card-title">Management Team </h5>
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#team-s">
+                                <i class="bi bi-plus-square-fill"></i>ADD
+                            </button>
+                        </div>
+                        <div class="row" id="team-data">
 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for Management Team  -->
+                <div class="modal fade" id="team-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form id="team_s_form">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Team Member</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Name</label>
+                                        <input type="text" name="member_name" id="member_name_inp"
+                                            class="form-control shadow-none" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Picture</label>
+                                        <input type="file" name="member_picture" id="member_picture_inp"
+                                            accept=".png,.jpg,.webp,.jpeg" class="form-control shadow-none" required>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" onclick="member_name.value='',member_picture.value=''"
+                                        class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                                    <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -289,6 +340,10 @@ session_regenerate_id(true);
         let site_about_inp = document.getElementById('site_about_inp');
 
         let contacts_s_form = document.getElementById('contacts_s_form');
+
+        let team_s_form = document.getElementById('team_s_form');
+        let member_name_inp = document.getElementById('member_name_inp');
+        let member_picture_inp = document.getElementById('member_picture_inp');
 
 
         //general function
@@ -426,7 +481,7 @@ session_regenerate_id(true);
             upd_contacts();
         });
 
-
+        //Contact update function
 
         function upd_contacts() {
             let index = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw', 'iframe'];
@@ -463,9 +518,89 @@ session_regenerate_id(true);
 
         }
 
+
+        team_s_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            add_member();
+        });
+
+
+        function add_member() {
+            let data = new FormData();
+            data.append('name', member_name_inp.value);
+            data.append('picture', member_picture_inp.files[0]);
+            data.append('add_member', '');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+
+
+            xhr.onload = function () {
+                console.log(this.responseText);
+                var myModal = document.getElementById('team-s');
+                var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap scrollspy instance
+                modal.hide();
+
+                if (this.responseText == 'inv_img') {
+                    alert('error', 'Only jpg, jpeg, png and webp images are allowed');
+                } else if (this.responseText == 'inv_size') {
+                    alert('error', 'Image size should be less than 2MB!');
+                } else if (this.responseText == 'upd_failed') {
+                    alert('error', 'Image upload failed, Server Down!!!');
+                } else {
+                    alert('success', 'New Member Added!');
+                    member_name_inp.value = '';
+                    member_picture_inp.value = '';
+                    get_members();
+                }
+
+
+
+            }
+
+            xhr.send(data);
+
+        }
+
+        function get_members() {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                document.getElementById('team-data').innerHTML = this.responseText
+            }
+
+            xhr.send('get_members');
+
+        }
+
+        function rem_member(val) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                if (this.response == 1) {
+                    alert('success', 'Member removed!');
+                    get_members();
+                } else {
+                    alert('error', 'Server down!');
+                }
+
+            }
+
+            xhr.send('rem_member=' + val);
+
+
+
+        }
+
         window.onload = function () {
             get_general();
             get_contacts();
+            get_members();
 
         }
     </script>
