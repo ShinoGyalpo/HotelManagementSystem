@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
-    <?php require('include/links.php');?>
+    <?php require ('include/links.php'); ?>
 
     <style>
-        .box:hover {
-            border-top-color: var(--green_hues) !important;
-            transform: scale(1.05);
-            transition: all 0.2s;
-        }
+    .box:hover {
+        border-top-color: var(--green_hues) !important;
+        transform: scale(1.05);
+        transition: all 0.2s;
+    }
     </style>
 
 </head>
 
 <body class="bg-light">
-    <?php require('include/header.php');?>
+    <?php require ('include/header.php'); ?>
 
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">ABOUT US</h2>
@@ -87,40 +87,25 @@
     </div>
 
     <!-- MANAGEMENT team -->
-    <h3 class="fw-bold h-font text-center mt-4">MANAGEMENT TEAM</h3>
+    <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
     <div class="container px-4">
         <!-- Swiper -->
-        <div class="swiper mySwiper mt-4">
+        <div class="swiper mySwiper mx-4">
             <div class="swiper-wrapper mb-5">
-                <div class="swiper-slide bg-white overflow-hidden rounded text-center">
-                    <img src="images/about/team.jpg" class="w-100">
-                    <h5 class="mt-2">ramdom Name</h5>
-                </div>
 
-                <div class="swiper-slide bg-white overflow-hidden rounded text-center">
-                    <img src="images/about/team.jpg" class="w-100">
-                    <h5 class="mt-2">ramdom Name</h5>
-                </div>
+                <?php
+                    $about_r = selectAll('team_details');
+                    $path = ABOUT_IMG_PATH;
 
-                <div class="swiper-slide bg-white overflow-hidden rounded text-center">
-                    <img src="images/about/team.jpg" class="w-100">
-                    <h5 class="mt-2">ramdom Name</h5>
-                </div>
-
-                <div class="swiper-slide bg-white overflow-hidden rounded text-center">
-                    <img src="images/about/team.jpg" class="w-100">
-                    <h5 class="mt-2">ramdom Name</h5>
-                </div>
-
-                <div class="swiper-slide bg-white overflow-hidden rounded text-center">
-                    <img src="images/about/team.jpg" class="w-100">
-                    <h5 class="mt-2">ramdom Name</h5>
-                </div>
-
-                <div class="swiper-slide bg-white overflow-hidden rounded text-center">
-                    <img src="images/about/team.jpg" class="w-100">
-                    <h5 class="mt-2">ramdom Name</h5>
-                </div>
+                    while ($row = mysqli_fetch_assoc($about_r)) {
+                        echo <<<data
+                            <div class="swiper-slide bg-white overflow-hidden rounded text-center">
+                                <img src="$path$row[picture]" class="w-100">
+                                <h5 class="mt-2">{$row['name']}</h5>
+                            </div>
+                            data;
+                    }
+                ?>
 
             </div>
             <div class="swiper-pagination"></div>
@@ -129,32 +114,32 @@
 
 
 
-    <?php require('include/footer.php');?>
+    <?php require ('include/footer.php'); ?>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            spaceBetween: 40,
-            pagination: {
-                el: ".swiper-pagination",
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 40,
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
             },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            }
-        });
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        }
+    });
     </script>
 
 </body>

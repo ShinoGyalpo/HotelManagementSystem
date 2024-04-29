@@ -5,7 +5,7 @@
 
 
 <!-- Admin Setting Nav bar -->
-<div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboardMenu">
+<div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid flex-lg-column align-items-stretch">
             <h4 class="mt-2 text-light">ADMIN PANEL</h4>
@@ -21,10 +21,10 @@
                         <a class="nav-link text-white" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Rooms</a>
+                        <a class="nav-link text-white" href="rooms.php">Rooms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Users</a>
+                        <a class="nav-link text-white" href="users.php">Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="setting.php">Settings</a>
