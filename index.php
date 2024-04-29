@@ -30,31 +30,24 @@
     <?php require ('include/header.php'); ?>
 
 
-    <!-- Slider -->
+    <!-- Slider / Carousel-->
     <div id="home" class="container-fluid px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="images/slider/1.jpg" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/slider/2.png" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/slider/3.png" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/slider/4.png" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/slider/5.png" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/slider/1.png" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/slider/6.png" class="w-100 d-block" />
-                </div>
+
+                <?php
+                $res = selectAll('carousel');
+                while ($row = mysqli_fetch_assoc($res)) {
+
+                    $path = CAROUSEL_IMG_PATH;
+                    echo <<<data
+                        <div class="swiper-slide">
+                            <img src="$path$row[image]" class="w-100 d-block" />
+                        </div>
+                     data;
+
+                }
+                ?>
             </div>
         </div>
     </div>

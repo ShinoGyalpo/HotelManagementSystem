@@ -3,11 +3,14 @@
 //frontend data process
 define('SITE_URL', 'http://localhost:8080/HotelManagementSystem/');
 define('ABOUT_IMG_PATH', SITE_URL . 'images/about/');
+define('CAROUSEL_IMG_PATH', SITE_URL . 'images/slider/');
 
 
 //backend upload process needs this data
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'] . '/HotelManagementSystem/images/');
 define('ABOUT_FOLDER', 'about/');
+define('CAROUSEL_FOLDER', 'slider/');
+
 function adminLogin()
 {
     session_start();
