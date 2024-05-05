@@ -3,7 +3,12 @@
     <a href="logout.php" class="btn btn-light btn-sm">LOG OUT</a>
 </div>
 
-
+<style>
+.nav-link:hover {
+    background-color: #79a3cd;
+    color: white;
+}
+</style>
 <!-- Admin Setting Nav bar -->
 <div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -21,10 +26,13 @@
                         <a class="nav-link text-white" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="rooms.php">Rooms</a>
+                        <a class="nav-link text-white" href="carousel.php">Carousel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="carousel.php">Carousel</a>
+                        <a class="nav-link text-white" href="features_facilities.php">Features & Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="user_queries.php">User Queries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="setting.php">Settings</a>

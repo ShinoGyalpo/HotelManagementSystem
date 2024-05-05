@@ -32,7 +32,7 @@ session_regenerate_id(true);
                             <h5 class="card-title">Images</h5>
                             <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#carousel-s">
-                                <i class="bi bi-plus-square-fill"></i>ADD
+                                <i class="bi bi-plus-square-fill"></i> ADD
                             </button>
                         </div>
                         <div class="row" id="carousel-data">

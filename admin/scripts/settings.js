@@ -201,7 +201,6 @@ function add_member() {
 
 
     xhr.onload = function () {
-        console.log(this.responseText);
         var myModal = document.getElementById('team-s');
         var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap scrollspy instance
         modal.hide();

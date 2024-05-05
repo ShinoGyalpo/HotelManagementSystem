@@ -49,12 +49,48 @@ input::-webkit-inner-spin-button {
 
 }
 
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Color of the track */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Color of the handle */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Darker color on hover */
+}
+
+
 #dashboard-menu {
     position: fixed;
     height: 100%;
     z-index: 11;
 
+
+
 }
+
+#adminDropDown .nav-link:hover {
+    color: #ccc;
+}
+
 
 
 @media screen and (max-width:991px) {

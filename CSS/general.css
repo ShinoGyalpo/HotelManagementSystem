@@ -1,6 +1,6 @@
 :root {
-    --green_hues: #5dbea3;
-    --teal_hover: #279e8c;
+    --green_hues: #4CAF50;
+    --blue_hover: #2640e8;
 }
 
 * {
@@ -18,14 +18,23 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/* CSS for the images within the specific swiper */
+#home .swiper.swiper-container .swiper-wrapper .swiper-slide img {
+    width: 1920px;
+    height: 540px;
+    object-fit: cover;
+}
+
+
+
 .custom-bg {
     background-color: var(--green_hues);
     border: 1px solid black;
 }
 
 .custom-bg:hover {
-    background-color: var(--teal_hover);
-    border-color: var(--teal_hover);
+    background-color: var(--blue_hover);
+    border-color: var(--blue_hover);
 
 }
 
@@ -40,4 +49,11 @@ input::-webkit-inner-spin-button {
     width: 220px;
     margin: 0 auto;
     height: 1.5px;
+}
+
+.custom-alert {
+    top: 74px;
+    right: 25px;
+    position: fixed;
+
 }
