@@ -218,8 +218,6 @@ function add_member() {
             get_members();
         }
 
-
-
     }
 
     xhr.send(data);
