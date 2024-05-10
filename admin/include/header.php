@@ -4,10 +4,10 @@
 </div>
 
 <style>
-.nav-link:hover {
-    background-color: #79a3cd;
-    color: white;
-}
+    .nav-link:hover {
+        background-color: #79a3cd;
+        color: white;
+    }
 </style>
 <!-- Admin Setting Nav bar -->
 <div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
@@ -30,6 +30,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="features_facilities.php">Features & Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="rooms.php">Rooms</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="user_queries.php">User Queries</a>

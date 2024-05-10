@@ -4,7 +4,7 @@ $hname = 'localhost';
 $uname = 'root';
 $pass = '';
 $db = 'fyphms';
-$con = mysqli_connect('localhost', 'root', 'password', 'fyphms', '3307');
+$con = mysqli_connect('localhost', 'root', 'password', 'fyphms', 3307);
 
 if (!$con) {
     die("Cannot Connect to Database" . mysqli_connect_error());
@@ -47,7 +47,7 @@ function select($sql, $values, $datatypes)
         }
 
     } else {
-        die("Query cannot be prepared- Select");
+        die("Query cannot be prepared - Select");
     }
 }
 

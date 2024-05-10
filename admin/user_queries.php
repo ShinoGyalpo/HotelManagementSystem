@@ -1,6 +1,7 @@
 <?php
 require ('include/essential.php');
 require ('include/dbconfig.php');
+
 adminLogin();
 
 //Reading the queires
