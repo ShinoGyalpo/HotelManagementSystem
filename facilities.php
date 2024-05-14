@@ -9,12 +9,12 @@
 
     <?php require ('include/links.php'); ?>
     <style>
-    .pop:hover {
-        border-top-color: var(--green_hues) !important;
-        transform: scale(1.05);
-        transition: all 0.2s;
+        .pop:hover {
+            border-top-color: var(--green_hues) !important;
+            transform: scale(1.05);
+            transition: all 0.2s;
 
-    }
+        }
     </style>
 
 
@@ -26,9 +26,12 @@
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">OUR FACILITIES</h2>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            <br>Excepturi natus laborum fugiat velit atque ducimus,
-            facilis ut at a quos?
+        <p class="text-center mt-3">
+            Welcome to our hotel, where luxury meets convenience. Our facilities are designed to enhance your stay and
+            provide you with the utmost comfort and satisfaction. From modern amenities like complimentary Wi-Fi and air
+            conditioning to indulgent features such as a spa, pool, and mini bar, we offer everything you need for a
+            memorable and relaxing experience. Explore our range of facilities designed to cater to your every need,
+            ensuring a truly enjoyable stay from start to finish.
         </p>
 
     </div>

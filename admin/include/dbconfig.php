@@ -102,7 +102,7 @@ function delete($sql, $values, $datatypes)
         }
 
     } else {
-        die("Query cannot be prepared- Delete");
+        die("Query cannot be prepared - Delete");
     }
 }
 ?>

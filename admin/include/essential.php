@@ -5,6 +5,8 @@ define('SITE_URL', 'http://localhost:8080/HotelManagementSystem/');
 define('ABOUT_IMG_PATH', SITE_URL . 'images/about/');
 define('CAROUSEL_IMG_PATH', SITE_URL . 'images/slider/');
 define('FACILITIES_IMG_PATH', SITE_URL . 'images/facilities/');
+define('ROOMS_IMG_PATH', SITE_URL . 'images/rooms/');
+
 
 
 
@@ -13,6 +15,8 @@ define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'] . '/HotelManagementSystem/
 define('ABOUT_FOLDER', 'about/');
 define('CAROUSEL_FOLDER', 'slider/');
 define('FACILITIES_FOLDER', 'facilities/');
+define('ROOMS_FOLDER', 'rooms/');
+
 
 
 function adminLogin()
@@ -89,7 +93,7 @@ function uploadSVGImages($image, $folder)
 
     if (!in_array($img_mime, $valid_mime)) {
         return 'inv_img'; //invalid image mime or format
-    } else if (($image['size'] / (1024 * 1024)) > 1 ) {
+    } else if (($image['size'] / (1024 * 1024)) > 1) {
         return 'inv_size';  //invalid size
 
     } else {
