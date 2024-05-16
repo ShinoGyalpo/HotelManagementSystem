@@ -71,7 +71,7 @@ if (isset($_POST['register'])) {
         exit;
     }
 
-    //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
+
 
     $token = bin2hex(random_bytes(16));
     if (!send_mail($data['email'], $data['name'], $token)) {
