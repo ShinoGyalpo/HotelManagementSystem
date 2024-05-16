@@ -55,5 +55,6 @@ input::-webkit-inner-spin-button {
     top: 74px;
     right: 25px;
     position: fixed;
+    z-index: 1111;
 
 }

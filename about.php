@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel PG - About Us</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
     <?php require ('include/links.php'); ?>
+    <title>
+        <?php echo $settings_r['site_title'] ?> - ABOUT US
+    </title>
 
     <style>
     .box:hover {
@@ -94,17 +97,17 @@
             <div class="swiper-wrapper mb-5">
 
                 <?php
-                    $about_r = selectAll('team_details');
-                    $path = ABOUT_IMG_PATH;
+                $about_r = selectAll('team_details');
+                $path = ABOUT_IMG_PATH;
 
-                    while ($row = mysqli_fetch_assoc($about_r)) {
-                        echo <<<data
+                while ($row = mysqli_fetch_assoc($about_r)) {
+                    echo <<<data
                             <div class="swiper-slide bg-white overflow-hidden rounded text-center">
                                 <img src="$path$row[picture]" class="w-100">
                                 <h5 class="mt-2">{$row['name']}</h5>
                             </div>
                             data;
-                    }
+                }
                 ?>
 
             </div>

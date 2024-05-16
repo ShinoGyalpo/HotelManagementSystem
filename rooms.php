@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel PG - Rooms</title>
+
 
 
     <?php require ('include/links.php'); ?>
+    <title>
+        <?php echo $settings_r['site_title'] ?> - ROOMS
+    </title>
 </head>
 
 <body class="bg-light">

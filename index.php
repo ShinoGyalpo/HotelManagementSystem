@@ -4,24 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel PG - Home</title>
+
 
     <?php require ('include/links.php'); ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <title>
+        <?php echo $settings_r['site_title'] ?> - HOME
+    </title>
     <style>
-    .availability-from {
-        margin-top: -50px;
-        z-index: 2;
-        position: relative;
-    }
-
-    @media screen and (max-width: 575px) {
         .availability-from {
-            margin-top: 24px;
-            padding: 0 36px;
+            margin-top: -50px;
+            z-index: 2;
+            position: relative;
         }
-    }
+
+        @media screen and (max-width: 575px) {
+            .availability-from {
+                margin-top: 24px;
+                padding: 0 36px;
+            }
+        }
     </style>
 
 </head>
@@ -194,7 +197,8 @@
             ?>
 
             <div class="col-lg-12 text-center mt-5">
-                <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none ">More Rooms . .
+                <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none ">More Rooms .
+                    .
                     .</a>
             </div>
         </div>
@@ -206,14 +210,14 @@
     <div class="container">
         <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
             <?php
-            $res = mysqli_query($con, "SELECT * FROM `facilities` ORDER BY `id` DESC LIMIT 5");
+            $res = mysqli_query($con, "SELECT * FROM `facilities` ORDER BY `id`  LIMIT 5");
             $path = FACILITIES_IMG_PATH;
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo <<<data
                     <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
                         <img src="$path$row[icon]" width="60px">
-                        <h5 class="m-0 ms-4">$row[name]</h5>
+                        <h5 class="mt-2">$row[name]</h5>
                      </div>
                 data;
             }
@@ -240,7 +244,8 @@
                         <h6 class="m-0  ms-4">Some User eg 1</h6>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus optio esse doloremque!
-                        Culpa fuga incidunt numquam atque doloribus dolor, odio reprehenderit voluptatum, consequuntur,
+                        Culpa fuga incidunt numquam atque doloribus dolor, odio reprehenderit voluptatum,
+                        consequuntur,
                         ipsam tenetur ullam enim dicta asperiores facilis!</p>
                     <div class="rating">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -258,7 +263,8 @@
                         <h6 class="m-0  ms-4">Some User eg 2</h6>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus optio esse doloremque!
-                        Culpa fuga incidunt numquam atque doloribus dolor, odio reprehenderit voluptatum, consequuntur,
+                        Culpa fuga incidunt numquam atque doloribus dolor, odio reprehenderit voluptatum,
+                        consequuntur,
                         ipsam tenetur ullam enim dicta asperiores facilis!</p>
                     <div class="rating">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -276,7 +282,8 @@
                         <h6 class="m-0  ms-4">Some User eg 3</h6>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus optio esse doloremque!
-                        Culpa fuga incidunt numquam atque doloribus dolor, odio reprehenderit voluptatum, consequuntur,
+                        Culpa fuga incidunt numquam atque doloribus dolor, odio reprehenderit voluptatum,
+                        consequuntur,
                         ipsam tenetur ullam enim dicta asperiores facilis!</p>
                     <div class="rating">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -292,7 +299,8 @@
             <div class="swiper-pagination"></div>
         </div>
         <div class="col-lg-12 text-center mt-5">
-            <a href="about.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none ">Know More . . .</a>
+            <a href="about.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none ">Know More . .
+                .</a>
         </div>
     </div>
 
@@ -366,48 +374,48 @@
 
     <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-    var swiper = new Swiper(".swiper-container", {
-        spaceBetween: 30,
-        effect: "fade",
-        loop: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        }
-    });
+        var swiper = new Swiper(".swiper-container", {
+            spaceBetween: 30,
+            effect: "fade",
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            }
+        });
 
-    var swiper = new Swiper(".swiper-testimonials", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        slidesPerView: "3",
-        loop: true,
-        coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
+        var swiper = new Swiper(".swiper-testimonials", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            slidesPerView: "3",
+            loop: true,
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
             },
-            640: {
-                slidesPerView: 1,
+            pagination: {
+                el: ".swiper-pagination",
             },
-            768: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        }
-    });
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            }
+        });
     </script>
 
 </body>
