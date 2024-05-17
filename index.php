@@ -13,18 +13,18 @@
         <?php echo $settings_r['site_title'] ?> - HOME
     </title>
     <style>
-        .availability-from {
-            margin-top: -50px;
-            z-index: 2;
-            position: relative;
-        }
+    .availability-from {
+        margin-top: -50px;
+        z-index: 2;
+        position: relative;
+    }
 
-        @media screen and (max-width: 575px) {
-            .availability-from {
-                margin-top: 24px;
-                padding: 0 36px;
-            }
+    @media screen and (max-width: 575px) {
+        .availability-from {
+            margin-top: 24px;
+            padding: 0 36px;
         }
+    }
     </style>
 
 </head>
@@ -144,6 +144,13 @@
                     $room_thumb = ROOMS_IMG_PATH . $thumb_res['image'];
                 }
 
+                $book_btn = "";
+                if (!$settings_r['shutdown']) {
+                    $book_btn = " <a href='#' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</a>";
+
+                }
+
+
                 //Print room card
                 echo <<<data
                         <div class="col-lg-4 col-md-6 my-3">
@@ -186,7 +193,7 @@
                                     </span>
                                 </div>
                                 <div class="d-flex justify-content-evenly mb-2">
-                                    <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book Now</a>
+                                $book_btn
                                     <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More Details...</a>
                                 </div>
                             </div>
@@ -368,54 +375,152 @@
         </div>
     </div>
 
+    <!-- Password Reset modal -->
+    <div class="modal fade" id="recoveryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="recovery-form">
+                    <div class=" modal-header">
+                        <h5 class="modal-title d-flex align-items-center">
+                            <i class="bi bi-shield-lock fs-3 me-2"></i>Set up a New Password
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- form Body    -->
+                        <div class="mb-4">
+                            <label class="form-label">New Password</label>
+                            <input type="password" name="pass" required class=" form-control shadow-none">
+                            <input type="hidden" name="email">
+                            <input type="hidden" name="token">
+                        </div>
+                        <div class=" mb-2 text-end">
+                            <button type="button" class="btn shadow-none p-0  me-2" data-bs-dismiss="modal">
+                                CANCEL
+                            </button>
+                            <button type="submit" class="btn btn-dark shadow-none">SUBMIT</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <?php require ('include/footer.php'); ?>
+    <?php
+    if (isset($_GET['account_recovery'])) {
+        $data = filteration($_GET);
+        $t_date = date("y-m-d");
+        $query = select(
+            "SELECT * FROM `user_cred` WHERE `email`=? AND `token`=? AND `t_expired`=? LIMIT 1",
+            [$data['email'], $data['token'], $t_date],
+            'sss'
+        );
+
+        if (mysqli_num_rows($query) == 1) {
+            echo <<<showModal
+            <script>
+                var myModal = document.getElementById('recoveryModal');
+                myModal.querySelector("input[name='email']").value = '$data[email]';
+                myModal.querySelector("input[name='token']").value = '$data[token]';
+
+                
+                var modal = bootstrap.Modal.getOrCreateInstance(myModal);
+                modal.show();     
+            </script>
+            showModal;
+        } else {
+            alert("error", "Invalid or expired Link !!!");
+
+        }
+    }
+
+    ?>
+
 
 
 
     <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".swiper-container", {
-            spaceBetween: 30,
-            effect: "fade",
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            }
-        });
+    var swiper = new Swiper(".swiper-container", {
+        spaceBetween: 30,
+        effect: "fade",
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        }
+    });
 
-        var swiper = new Swiper(".swiper-testimonials", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            slidesPerView: "3",
-            loop: true,
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false,
+    var swiper = new Swiper(".swiper-testimonials", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        slidesPerView: "3",
+        loop: true,
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
             },
-            pagination: {
-                el: ".swiper-pagination",
+            640: {
+                slidesPerView: 1,
             },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        }
+    });
+
+    //Recover Account
+    let recovery_form = document.getElementById('recovery-form');
+
+    recovery_form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let data = new FormData();
+
+        data.append('email', recovery_form.elements['email'].value);
+        data.append('token', recovery_form.elements['token'].value);
+        data.append('pass', recovery_form.elements['pass'].value);
+        data.append('recover_user', '');
+
+        var myModal = document.getElementById('recoveryModal');
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/login_register.php", true);
+
+        xhr.onload = function() {
+            if (this.responseText == 'failed') {
+                alert('error', "Account Reset failed!");
+            } else {
+                alert('success', "Account Reset Succcessful");
+                recovery_form.reset();
+
             }
-        });
+
+        }
+
+        xhr.send(data);
+
+
+    });
     </script>
 
 </body>
