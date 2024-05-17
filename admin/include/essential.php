@@ -21,6 +21,10 @@ define('ROOMS_FOLDER', 'rooms/');
 define('USERS_FOLDER', 'users/');
 
 
+//SendGrid API KEY
+define('SENDGRID_API_KEY', "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");
+// define('SENDGRID_EMAIL', "gyalpo2001@gamil.com");
+// define('SENDGRID_NAME', "HOTEL PG");
 
 
 function adminLogin()
